@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+pydantic-settings
+openai-whisper
+groq
+ffmpeg-python
+httpx
+gtts
+langdetect
