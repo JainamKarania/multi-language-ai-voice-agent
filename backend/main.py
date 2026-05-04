@@ -17,10 +17,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# app.include_router(health.router, prefix="/api")
+app.include_router(health.router, prefix="/api")
 app.include_router(voice.router, prefix="/api/voice")
 app.include_router(chat.router, prefix="/api/chat")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
