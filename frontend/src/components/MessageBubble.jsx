@@ -1,39 +1,40 @@
-export function MessageBubble({ role, text, language }) {
-  const isUser = role === 'user'
-  const langLabel = language === 'hi' ? '🇮🇳' : '🇬🇧'
+export function MessageBubble({ role, text }) {
+  const isUser = role === "user";
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: isUser ? 'flex-end' : 'flex-start',
-      marginBottom: '12px',
-      gap: '8px',
-      alignItems: 'flex-end',
-    }}>
+    <div className={`flex items-end gap-2 ${isUser ? "justify-end" : ""}`}>
+
+      {/* AI Avatar (Pixel Style) */}
       {!isUser && (
-        <div style={{
-          width: 32, height: 32, borderRadius: '50%',
-          background: 'var(--ai-avatar-bg, #6c63ff)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 16, flexShrink: 0,
-        }}>🤖</div>
+        <div className="w-8 h-8 grid grid-cols-2 gap-[2px]">
+          <div className="bg-[#c9a96e]" />
+          <div className="bg-[#1f1f22]" />
+          <div className="bg-[#1f1f22]" />
+          <div className="bg-[#c9a96e]" />
+        </div>
       )}
-      <div style={{
-        maxWidth: '70%',
-        padding: '10px 14px',
-        borderRadius: isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-        background: isUser ? '#6c63ff' : 'var(--bubble-bg, #f0f0f0)',
-        color: isUser ? '#fff' : 'var(--bubble-text, #1a1a1a)',
-        fontSize: 15,
-        lineHeight: 1.5,
-      }}>
-        <p style={{ margin: 0 }}>{text}</p>
-        {language && (
-          <span style={{ fontSize: 10, opacity: 0.6, display: 'block', marginTop: 4 }}>
-            {langLabel} {language === 'hi' ? 'Hindi' : 'English'}
-          </span>
-        )}
+
+      {/* Bubble */}
+      <div
+        className={`max-w-md px-4 py-2 text-sm leading-relaxed rounded-lg border
+        ${
+          isUser
+            ? "bg-[#c9a96e] text-black border-[#c9a96e]"
+            : "bg-[#111113] text-[#e5e5e5] border-[#1f1f22]"
+        }`}
+      >
+        {text}
       </div>
+
+      {/* User Avatar */}
+      {isUser && (
+        <div className="w-8 h-8 grid grid-cols-2 gap-[2px]">
+          <div className="bg-white" />
+          <div className="bg-[#c9a96e]" />
+          <div className="bg-[#c9a96e]" />
+          <div className="bg-white" />
+        </div>
+      )}
     </div>
-  )
+  );
 }
